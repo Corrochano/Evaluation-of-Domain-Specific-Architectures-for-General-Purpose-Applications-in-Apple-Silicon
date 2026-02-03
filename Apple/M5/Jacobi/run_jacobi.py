@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-
+import os
 import argparse
 import torch
 import numpy as np
@@ -105,6 +105,28 @@ def main(size, runtimes, datatype, device, iterations):
    print(f"Performance: {gflops_per_second:.2f} GFLOPs/s")
    print(f"Max Performance took {minTime:.4f} seconds with {min_gflops_per_second:.2f} GFLOPs/s")
    print("****************************************************************************************************************************")
+
+   if os.path.exists(f"jacobi_{grid_size}x{grid_size}_{device}.csv"):
+
+        log_content = (
+            f"{datatype};{elapsed_time:.4f};{minTime:.4f};"
+        )
+
+   else:
+        log_content = (
+            f"datatype;MeanTime;PeakTime;PeakGFLOPs;datatype;MeanTime;PeakTime;PeakGFLOPs;"
+            f"Datatype;TotalMeanEnergy;cpuMeanEnergy;gpuMeanEnergy;aneMeanEnergy;"
+            f"Datatype;TotalMaxEnergy;cpuMaxEnergy;gpuMaxEnergy;aneMaxEnergy;"
+            f"Datatype;TotalMeanEnergy;cpuMeanEnergy;gpuMeanEnergy;aneMeanEnergy;"
+            f"Datatype;TotalMaxEnergy;cpuMaxEnergy;gpuMaxEnergy;aneMaxEnergy;\n"
+            f"{datatype};{elapsed_time:.4f};{minTime:.4f};{min_gflops_per_second:.2f};"
+        )
+
+
+   log_filename = f"jacobi_{grid_size}x{grid_size}_{device}.csv"
+   with open(log_filename, "a") as f:
+       f.write(log_content)
+
    # Inspect the Core ML model to view input and output names
 #   print("Model Inputs:", mlmodel.input_description)
 #   print("Model Outputs:", mlmodel.output_description)

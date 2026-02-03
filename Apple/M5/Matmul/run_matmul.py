@@ -89,6 +89,36 @@ def main(size, runtimes, datatype, device):
    print(f"Performance: {gflops_per_second:.2f} GFLOPs/s")
    print(f"Max Performance took {minTime:.4f} seconds with {min_gflops_per_second:.2f} GFLOPs/s")
    print("****************************************************************************************************************************")
+   
+   if os.path.exists(f"matmul_{grid_size}x{grid_size}_{device}.csv"):
+
+        log_content = (
+            f"{datatype};{elapsed_time:.4f};{minTime:.4f};"
+        )
+
+   else:
+        log_content = (
+            f"datatype;MeanTime;PeakTime;PeakGFLOPs;datatype;MeanTime;PeakTime;PeakGFLOPs;"
+            f"Datatype;TotalMeanEnergy;cpuMeanEnergy;gpuMeanEnergy;aneMeanEnergy;"
+            f"Datatype;TotalMaxEnergy;cpuMaxEnergy;gpuMaxEnergy;aneMaxEnergy;"
+            f"Datatype;TotalMeanEnergy;cpuMeanEnergy;gpuMeanEnergy;aneMeanEnergy;"
+            f"Datatype;TotalMaxEnergy;cpuMaxEnergy;gpuMaxEnergy;aneMaxEnergy;\n"
+            f"{datatype};{elapsed_time:.4f};{minTime:.4f};{min_gflops_per_second:.2f};"
+        )
+
+
+   log_filename = f"jacobi_{grid_size}x{grid_size}_{device}.csv"
+   with open(log_filename, "a") as f:
+       f.write(log_content)   
+   
+   #log_content = (
+   #    f"{datatype};{elapsed_time:.4f};{minTime:.4f};"
+   #)
+
+   #log_filename = f"matmul_{matrix_size}x{matrix_size}_{device}.csv"
+   #with open(log_filename, "a") as f:
+   #    f.write(log_content)
+   
    # Inspect the Core ML model to view input and output names
 #   print("Model Inputs:", mlmodel.input_description)
 #   print("Model Outputs:", mlmodel.output_description)
