@@ -141,7 +141,7 @@ def main(size, runtimes, datatype, device, iterations):
    print(f"Max Performance took {minTime:.4f} seconds")
    print("****************************************************************************************************************************")
    
-   if os.path.exists(f"jacobi_{grid_size}x{grid_size}_{device}.csv"):
+   if os.path.exists(f"multigrid_{grid_size}x{grid_size}_{device}.csv"):
 
         log_content = (
             f"{datatype};{elapsed_time:.4f};{minTime:.4f};"
@@ -158,7 +158,7 @@ def main(size, runtimes, datatype, device, iterations):
         )
 
 
-   log_filename = f"jacobi_{grid_size}x{grid_size}_{device}.csv"
+   log_filename = f"multigrid_{grid_size}x{grid_size}_{device}.csv"
    with open(log_filename, "a") as f:
        f.write(log_content)
    

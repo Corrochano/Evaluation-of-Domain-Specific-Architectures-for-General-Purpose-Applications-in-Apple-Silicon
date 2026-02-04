@@ -103,7 +103,7 @@ def read_file(fileName, grid_size, device):
         f"{fp_precision};{maxim};{cpu_max};{gpu_max};{ane_max};"
     )
 
-    log_filename = f"jacobi_{grid_size}x{grid_size}_{device}.csv"
+    log_filename = f"multigrid_{grid_size}x{grid_size}_{device}.csv"
     with open(log_filename, "a") as f:
         f.write(log_content)     
     
