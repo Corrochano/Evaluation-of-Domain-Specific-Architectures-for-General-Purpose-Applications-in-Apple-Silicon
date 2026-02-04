@@ -27,7 +27,7 @@ number_exec=$2
 echo " *** Running CPU FP16***"
 
 echo " Running the warmup..."
-python3 warmup.py cpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Matmul/warmup.py cpu
 
 echo "powermetrics"
 sudo rm -f cpu_16.txt
@@ -35,7 +35,7 @@ sudo powermetrics -i 100 --samplers cpu_power -a --hide-cpu-duty-cycle --show-us
 
 echo " Running the matmul model..."
 # Test to launch (exec)
-python3 /Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Matmul/run_matmul.py $size $number_exec fp16 cpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Matmul/run_matmul.py $size $number_exec fp16 cpu
 
 echo " Model done to run!"
 sudo pkill -9 powermetrics
