@@ -27,7 +27,7 @@ number_exec=$2
 echo " *** Running CPU FP16***"
 
 echo " Running the warmup..."
-python3 warmup.py cpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/warmup.py cpu
 
 echo "powermetrics"
 sudo rm -f cpu_16.txt
@@ -35,14 +35,14 @@ sudo powermetrics -i 100 --samplers cpu_power -a --hide-cpu-duty-cycle --show-us
 
 echo " Running the jacobi model..."
 # Test to launch (exec)
-python3 run_jacobi.py $size 100 $number_exec fp16 cpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/run_jacobi.py $size 100 $number_exec fp16 cpu
 
 echo " Model done to run!"
 sudo pkill -9 powermetrics
 
 echo " Saving metrics..."
-python3 calculatePower.py cpu_16.txt ${size} fp16 cpu
-python3 allGraphic.py cpu_16.txt ${size} fp16 cpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/calculatePower.py cpu_16.txt ${size} fp16 cpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/allGraphic.py cpu_16.txt ${size} fp16 cpu
 echo " Done!"
 
 echo " *** Running CPU FP32***"
@@ -56,18 +56,18 @@ sudo powermetrics -i 100 --samplers cpu_power -a --hide-cpu-duty-cycle --show-us
 
 echo " Running the jacobi model..."
 # Test to launch (exec)
-python3 run_jacobi.py $size 100 $number_exec fp32 cpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/run_jacobi.py $size 100 $number_exec fp32 cpu
 
 echo " Model done to run!"
 sudo pkill -9 powermetrics
 
 echo " Saving metrics..."
-python3 calculatePower.py cpu_32.txt ${size} fp32 cpu
-python3 allGraphic.py cpu_32.txt ${size} fp32 cpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/calculatePower.py cpu_32.txt ${size} fp32 cpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/allGraphic.py cpu_32.txt ${size} fp32 cpu
 echo " Done!"
 
 echo " Saving vs metrics..."
-python3 graphic16vs32.py cpu_16.txt cpu_32.txt ${size} cpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/graphic16vs32.py cpu_16.txt cpu_32.txt ${size} cpu
 
 
 
@@ -76,7 +76,7 @@ python3 graphic16vs32.py cpu_16.txt cpu_32.txt ${size} cpu
 echo " *** Running GPU FP16***"
 
 echo " Running the warmup..."
-python3 warmup.py gpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/warmup.py gpu
 
 echo "powermetrics"
 sudo rm -f gpu_16.txt
@@ -84,20 +84,20 @@ sudo powermetrics -i 100 --samplers cpu_power -a --hide-cpu-duty-cycle --show-us
 
 echo " Running the jacobi model..."
 # Test to launch (exec)
-python3 run_jacobi.py $size 100 $number_exec fp16 gpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/run_jacobi.py $size 100 $number_exec fp16 gpu
 
 echo " Model done to run!"
 sudo pkill -9 powermetrics
 
 echo " Saving metrics..."
-python3 calculatePower.py gpu_16.txt ${size} fp16 gpu
-python3 allGraphic.py gpu_16.txt ${size} fp16 gpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/calculatePower.py gpu_16.txt ${size} fp16 gpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/allGraphic.py gpu_16.txt ${size} fp16 gpu
 echo " Done!"
 
 echo " *** Running GPU FP32***"
 
 echo " Running the warmup..."
-python3 warmup.py gpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/warmup.py gpu
 
 echo "powermetrics"
 sudo rm -f gpu_32.txt
@@ -105,18 +105,18 @@ sudo powermetrics -i 100 --samplers cpu_power -a --hide-cpu-duty-cycle --show-us
 
 echo " Running the jacobi model..."
 # Test to launch (exec)
-python3 run_jacobi.py $size 100 $number_exec fp32 gpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/run_jacobi.py $size 100 $number_exec fp32 gpu
 
 echo " Model done to run!"
 sudo pkill -9 powermetrics
 
 echo " Saving metrics..."
-python3 calculatePower.py gpu_32.txt ${size} fp32 gpu
-python3 allGraphic.py gpu_32.txt ${size} fp32 gpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/calculatePower.py gpu_32.txt ${size} fp32 gpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/allGraphic.py gpu_32.txt ${size} fp32 gpu
 echo " Done!"
 
 echo " Saving vs metrics..."
-python3 graphic16vs32.py gpu_16.txt gpu_32.txt ${size} gpu
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/graphic16vs32.py gpu_16.txt gpu_32.txt ${size} gpu
 
 
 
@@ -124,7 +124,7 @@ python3 graphic16vs32.py gpu_16.txt gpu_32.txt ${size} gpu
 echo " *** Running ANE FP16***"
 
 echo " Running the warmup..."
-python3 warmup.py ane
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/warmup.py ane
 
 echo "powermetrics"
 sudo rm -f ane_16.txt
@@ -132,20 +132,20 @@ sudo powermetrics -i 100 --samplers cpu_power -a --hide-cpu-duty-cycle --show-us
 
 echo " Running the jacobi model..."
 # Test to launch (exec)
-python3 run_jacobi.py $size 100 $number_exec fp16 ane
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/run_jacobi.py $size 100 $number_exec fp16 ane
 
 echo " Model done to run!"
 sudo pkill -9 powermetrics
 
 echo " Saving metrics..."
-python3 calculatePower.py ane_16.txt ${size} fp16 ane
-python3 allGraphic.py ane_16.txt ${size} fp16 ane
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/calculatePower.py ane_16.txt ${size} fp16 ane
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/allGraphic.py ane_16.txt ${size} fp16 ane
 echo " Done!"
 
 echo " *** Running ANE FP32***"
 
 echo " Running the warmup..."
-python3 warmup.py ane
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/warmup.py ane
 
 echo "powermetrics"
 sudo rm -f ane_32.txt
@@ -153,15 +153,15 @@ sudo powermetrics -i 100 --samplers cpu_power -a --hide-cpu-duty-cycle --show-us
 
 echo " Running the jacobi model..."
 # Test to launch (exec)
-python3 run_jacobi.py $size 100 $number_exec fp32 ane
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/run_jacobi.py $size 100 $number_exec fp32 ane
 
 echo " Model done to run!"
 sudo pkill -9 powermetrics
 
 echo " Saving metrics..."
-python3 calculatePower.py ane_32.txt ${size} fp32 ane
-python3 allGraphic.py ane_32.txt ${size} fp32 ane
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/calculatePower.py ane_32.txt ${size} fp32 ane
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/allGraphic.py ane_32.txt ${size} fp32 ane
 echo " Done!"
 
 echo " Saving vs metrics..."
-python3 graphic16vs32.py ane_16.txt ane_32.txt ${size} ane
+python3 Evaluation-of-Domain-Specific-Architectures-for-General-Purpose-Applications-in-Apple-Silicon/Apple/M5/Jacobi/graphic16vs32.py ane_16.txt ane_32.txt ${size} ane
